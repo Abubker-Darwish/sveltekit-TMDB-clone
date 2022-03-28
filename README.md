@@ -38,3 +38,14 @@ npm run build
 You can preview the production build with `npm run preview`.
 
 > To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs#adapters) for your target environment.
+
+## TMDB
+
+to activate the apis you need to register to [tmdb][https://www.themoviedb.org/]
+
+then create api_key and add it to .env file 
+VITE_API_KEY
+
+```bash
+VITE_API_KEY="***"
+```
