@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body, #svelte {
+    min-height: 100vh;
+    @apply font-sans-pro;
+  }
+}
+
+@layer components {
+  .svelte-progress-bar {
+    z-index: 200 !important;
+  }
+  .svelte-progress-bar-leader {
+    z-index: 201 !important;
+  }
+  .scroll-y {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  
+  .scroll-y::-webkit-scrollbar-track,
+  body::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  
+  .scroll-y::-webkit-scrollbar,
+  body::-webkit-scrollbar {
+    background-color: transparent;
+    width: 5px;
+  }
+  
+  .scroll-y::-webkit-scrollbar-thumb,
+  body::-webkit-scrollbar-thumb {
+    background-color: rgba(120, 137, 160, 0.2);
+    border-radius: 4px;
+    width: 6px;
+  }
+  
+  .scroll-x {
+    overflow-x: auto;
+  }
+  
+  .scroll-x::-webkit-scrollbar-track {
+    background-color: #fff;
+  }
+  
+  .scroll-x::-webkit-scrollbar {
+    background-color: #fff;
+    height: 5px;
+  }
+  
+  .scroll-x::-webkit-scrollbar-thumb {
+    background-color: #eee;
+    border: 2px solid #eee;
+    border-radius: 0;
+  }
+  .section-title {
+    @apply text-2xl font-semibold;
+  }
+  .load_more_btn {
+		@apply bg-brand-100 text-base text-white font-semibold py-2 px-6 mx-auto block capitalize rounded-xl shadow shadow-brand-100;
+	}
+}
