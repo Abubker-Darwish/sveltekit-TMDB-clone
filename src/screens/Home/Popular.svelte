@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
+
 	import MovieCard from '$components/MovieCard.svelte';
 	// import { variables } from '$helpers/variable';
 
@@ -10,7 +12,6 @@
 		// const url = `https://api.themoviedb.org/3/trending/all/${val}?api_key=${variables?.basePath}`;
 		// const res = await fetch(url);
 		// const { results } = await res.json();
-
 		// list = results;
 	};
 </script>
@@ -45,12 +46,17 @@
 <div class="relative">
 	<div class="list-container scroll-x">
 		{#each list as item}
+			{@const tv = `/tv/${item.id}-${item.original_name?.replace(' ', '_')?.toLowerCase()}`}
 			<div class="snap-always snap-center shrink-0 w-[150px]">
 				<MovieCard
 					{item}
 					url="https://www.themoviedb.org/t/p/w440_and_h660_face/{item.poster_path}"
 					title={item.title || item.name}
 					percentage={item?.vote_average * 10}
+					release_date={item?.release_date || item?.first_air_date}
+					on:click={() => {
+						goto(tv);
+					}}
 				/>
 			</div>
 		{/each}
