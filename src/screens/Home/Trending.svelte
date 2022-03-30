@@ -50,6 +50,7 @@
 					url="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/{item.poster_path}"
 					title={item.title || item.name}
 					percentage={item?.vote_average * 10}
+					release_date={item?.release_date || item?.first_air_date}
 				/>
 			</div>
 		{/each}

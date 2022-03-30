@@ -16,6 +16,7 @@
 	import CardMovie from '$components/MovieCard.svelte';
 	import { onMount } from 'svelte';
 	import { popularMovie } from '$stores/Movies/popular';
+  import { goto } from "$app/navigation";
 
 	export let popularMovies = [];
 
@@ -30,11 +31,16 @@
 		<div class="w-0 h-4" />
 		<div class="list-box">
 			{#each $popularMovie.list as item}
+				{@const path = `/movies/${item.id}-${item.original_title?.replace(' ', '_')?.toLowerCase()}`}
 				<div class="shadow rounded " >
 					<CardMovie
 						url="https://www.themoviedb.org/t/p/w440_and_h660_face/{item.poster_path}"
 						title={item.title}
             percentage={item.vote_average * 10}
+						release_date={item?.release_date}
+						on:click={() => {
+							goto(path)
+						}}
 					/>
 				</div>
 			{/each}

@@ -51,6 +51,7 @@
 					url="https://www.themoviedb.org/t/p/w440_and_h660_face/{item.poster_path}"
 					title={item.title || item.name}
 					percentage={item?.vote_average * 10}
+					release_date={item?.release_date || item?.first_air_date}
 				/>
 			</div>
 		{/each}

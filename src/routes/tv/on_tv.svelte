@@ -16,6 +16,7 @@
 	import CardMovie from '$components/MovieCard.svelte';
 	import { onMount } from 'svelte';
 	import { onTV } from '$stores/tv/on_tv';
+import { goto } from '$app/navigation';
 
 	export let list = [];
 
@@ -30,11 +31,17 @@
 		<div class="w-0 h-4" />
 		<div class="list-box">
 			{#each $onTV.list as item}
+				{@const path = `/tv/${item.id}-${item.original_name?.replace(' ', '_')?.toLowerCase()}`}
+
 				<div class="shadow rounded">
 					<CardMovie
 						url="https://www.themoviedb.org/t/p/w440_and_h660_face/{item.poster_path}"
 						title={item.name}
 						percentage={item.vote_average * 10}
+						release_date={item?.first_air_date}
+						on:click={() => {
+							goto(path);
+						}}
 					/>
 				</div>
 			{/each}
