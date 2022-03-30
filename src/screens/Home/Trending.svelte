@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
+
 	import MovieCard from '$components/MovieCard.svelte';
 	import { variables } from '$helpers/variable';
 
@@ -44,6 +46,9 @@
 <div class="relative">
 	<div class="list-container scroll-x">
 		{#each list as item}
+			{@const movie = `/movies/${item.id}-${item.original_title?.replace(' ', '_')?.toLowerCase()}`}
+			{@const tv = `/tv/${item.id}-${item.original_name?.replace(' ', '_')?.toLowerCase()}`}
+			{@const path = { movie, tv }}
 			<div class="snap-always snap-center shrink-0 w-[150px]">
 				<MovieCard
 					{item}
@@ -51,6 +56,9 @@
 					title={item.title || item.name}
 					percentage={item?.vote_average * 10}
 					release_date={item?.release_date || item?.first_air_date}
+					on:click={() => {
+						goto(path[item.media_type]);
+					}}
 				/>
 			</div>
 		{/each}
